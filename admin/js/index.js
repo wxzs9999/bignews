@@ -1,26 +1,22 @@
 $(function () {
-   //JQ:-------------------------------------------------
-   $.ajax({
-     type:'get',
-     url:BigNew.user_info,
-     headers:{
-        'Authorization':localStorage.getItem('token'),
-     },
-     success:function(res){
-      console.log(res);
-      if(res.code==200){
-     $('.user_info span i').html(res.data.nickname);
-     $('.user_info img').src=res.data.userPic;
-     $('.header_bar img').src=res.data.userPic;
-      }
-     }
+    //JQ:-------------------------------------------------
+    $.ajax({
+        type: 'get',
+        url: BigNew.user_info,
+        headers: {
+            'Authorization': localStorage.getItem('token'),
+        },
+        success: function (res) {
+            console.log(res);
+            if (res.code == 200) {
+                $('.user_info span i').html(res.data.nickname);
+                $('.user_info img').src = res.data.userPic;
+                $('.header_bar img').src = res.data.userPic;
+            }
+        }
 
 
-   })
-
-  
-
-
+    })
 
     //原生js方法：--------------------------------------------
     // var xhr = new XMLHttpRequest();
@@ -35,6 +31,15 @@ $(function () {
     //      $('.user_info img').src=userPic;
     //         }
     // }
+
+    //退出登录事件：---------------------------------------
+    $('.user_center_link .logout').on('click', function () {
+        alert(123)
+        //1.删除本地的token：
+        window.localStorage.removeItem('token');
+        //2.跳转到登陆页面：
+        window.location.href = './login.html';
+    })
 
 
 
