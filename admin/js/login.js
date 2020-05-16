@@ -23,8 +23,11 @@ $(function () {
         $('.modal').modal('show');
         $('.modal-body p').html(res.msg);
         if (res.code == 200) {
+          console.log(res.token);
+          
           $('.modal').on('hidden.bs.modal', function (e) {
             window.location.href = './index.html'
+            window.localStorage.setItem('token',res.token);
           })
         }
       }
