@@ -3,9 +3,9 @@ $(function () {
     $.ajax({
         type: 'get',
         url: BigNew.user_detail,
-        headers: {
-            'Authorization': localStorage.getItem('token')
-        },
+        // headers: {
+        //     'Authorization': localStorage.getItem('token')
+        // },
         success: function (res) {
             if (res.code == 200) {
                 console.log(res.data);
@@ -38,9 +38,9 @@ $(function () {
             type: 'post',
             url: BigNew.user_edit,
             data: data,
-            headers: {
-                'Authorization': localStorage.getItem('token')
-            },
+            // headers: {
+            //     'Authorization': localStorage.getItem('token')
+            // },
             contentType: false,
             processData: false,
             success: function (res) {
