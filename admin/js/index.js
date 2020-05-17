@@ -45,8 +45,14 @@ $(function () {
     $('.menu .level01').on('click',function(){
      $(this).addClass('active').siblings().removeClass('active');
      if($(this).index()==1){
-        $(this).find('b').toggle('rotate0')
+        $(this).find('b').toggleClass('rotate0');
+        $('.level02').slideToggle();
+        $('.menu .level02 li:eq(0)').trigger('click')
      }
+    })
+
+    $('.menu .level02 li').on('click',function(){
+   $(this).addClass('active').siblings().removeClass('active')
     })
 
 
