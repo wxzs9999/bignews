@@ -10,13 +10,15 @@ $(function () {
             console.log(res);
             if (res.code == 200) {
                 $('.user_info span i').html(res.data.nickname);
-                $('.user_info img').src = res.data.userPic;
-                $('.header_bar img').src = res.data.userPic;
+                // $('.user_info img').src = res.data.userPic;
+                // $('.header_bar img').src = res.data.userPic;
+                $('.user_info img').attr('src', res.data.userPic)
+                $('.user_center_link img').attr('src', res.data.userPic)
             }
         }
-
-
     })
+
+
 
     //原生js方法：--------------------------------------------
     // var xhr = new XMLHttpRequest();
