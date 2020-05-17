@@ -32,7 +32,7 @@ $(function () {
     //         }
     // }
 
-    //退出登录事件：---------------------------------------
+    //退出登录事件：-------------------------------------------------
     $('.user_center_link .logout').on('click', function () {
         alert(123)
         //1.删除本地的token：
@@ -41,6 +41,13 @@ $(function () {
         window.location.href = './login.html';
     })
 
+    //左侧列表点击高亮事件：-----------------------------------------------
+    $('.menu .level01').on('click',function(){
+     $(this).addClass('active').siblings().removeClass('active');
+     if($(this).index()==1){
+        $(this).find('b').toggle('rotate0')
+     }
+    })
 
 
 })
