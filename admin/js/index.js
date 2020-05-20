@@ -7,7 +7,6 @@ $(function () {
         //     'Authorization': localStorage.getItem('token'),
         // },
         success: function (res) {
-            console.log(res);
             if (res.code == 200) {
                 $('.user_info span i').html(res.data.nickname);
                 // $('.user_info img').src = res.data.userPic;
