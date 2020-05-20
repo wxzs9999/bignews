@@ -11,8 +11,8 @@ $(function () {
         }
     })
 
-    //获取主内容数据：---------------------------------------------
     //封装的获取页面数据：--------------------------------------
+    var current=1;
     function getDate(mypage,callback) {
         $.ajax({
             type: 'get',
@@ -29,14 +29,16 @@ $(function () {
                 if (res.code == 200) {
                     var htmlStr = template('Main', res);
                     $('tbody').html(htmlStr);
-                    //分页插件调用：-----
+                    //分页插件调用：目的:重新渲染页面数-----
                     if(res.data.totalPage==0&&mypage==1){
                  $('#pagination-demo').hide().next().show()
                     }else if(res.data.totalPage!=0 && callback!=null){
                  $('#pagination-demo').show().next().hide()
                    callback(res);
-                    // pagination(res)
-                    //$('#pagination-demo').twbsPagination('changeTotalPages', res.data.totalPage, 1)
+                    }else if(res.data.totalPage!=0 && res.data.data.length==0){
+                    //针对于最后一页
+                     current-=1
+                     $('#pagination-demo').twbsPagination('changeTotalPages', res.data.totalPage, current)
 
                     }
                 }
@@ -44,6 +46,7 @@ $(function () {
         })
 
      }
+    //获取主内容数据：----------------------
     getDate(1,pagination)
 
     //筛选设置事件：---------------------------------------------
@@ -51,39 +54,7 @@ $(function () {
         e.preventDefault();
         getDate(1,function(res){
         $('#pagination-demo').twbsPagination('changeTotalPages', res.data.totalPage, 1)
-
         })
-        //注意：在selection中val()指的是value=""中的值
-        // $.ajax({
-        //     type: 'get',
-        //     url: BigNew.article_query,
-        //     data: {
-        //         key: $('#key').val(),
-        //         type: $('#selCategory').val(),
-        //         state: $('#selStatus').val(),
-        //         page: 1,
-        //         perpage: 10,
-        //     },
-        //     success: function (res) {
-        //         console.log(res);
-        //         if (res.code == 200) {
-        //             var htmlStr = template('Main', res);
-        //             $('tbody').html(htmlStr);
-        //             //分页插件再次调用：-----
-        //             /*
-        //             参数1：changeTotalPages,事件
-        //             参数2：动态改变的总页数
-        //             参数3：当前起始页
-        //              */
-        //             if(res.data.totalPage==0){
-        //                 $('#pagination-demo').hide().next().show()
-        //                    }else if(res.data.totalPage!=0){
-        //                 $('#pagination-demo').show().next().hide()
-        //                 $('#pagination-demo').twbsPagination('changeTotalPages', res.data.totalPage, 1)
-        //                    }
-        //         }
-        //     }
-        // })
     })
     //分页的封装：----------------------
     function pagination(res, visiblePages) {
@@ -99,33 +70,35 @@ $(function () {
             //page当前的页码值变化的时候，重新渲染页面
             onPageClick: function (event, page) {
                 // $('#page-content').text('Page ' + page);
+                current =page;
                 getDate(page,null)
-                 
-                // $.ajax({
-                //     type: 'get',
-                //     url: BigNew.article_query,
-                //     data: {
-                //         key: $('#key').val(),
-                //         type: $('#selCategory').val(),
-                //         state: $('#selStatus').val(),
-                //         page: page,  //可以使列表随着当前页码值变换
-                //         perpage: 10,
-                //     },
-                //     success: function (res) {
-                //         console.log(res);
-                //         if (res.code == 200) {
-                //             var htmlStr = template('Main', res);
-                //             $('tbody').html(htmlStr);
-
-                //         }
-                //     }
-                // })
             }
         });
 
     }
 
-
+    //删除事件：---------------------------------------
+   $('.removeModal').on('show.bs.modal', function (e) {
+    window.id=$(e.relatedTarget).data('id');
+    console.log(id);
+     })
+    //确定删除按钮：---------------------------------------
+   $('.btn-primary').on('click',function(){
+      $.ajax({
+          type:'post',
+          url:BigNew.article_delete,
+          data:{
+              id:id
+          },
+         success:function(res){
+         if(res.code==204){
+        $('.removeModal').modal('hide');
+        //因为是当前页，所以最后一页删除最后一项时，最后一页没有数据了，还是停在最后一页，所以在封装的函数中，添加判断条件
+            getDate(current,null)
+         }
+         } 
+      }) 
+   })
 
     })
 
