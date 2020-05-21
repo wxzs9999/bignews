@@ -42,14 +42,11 @@ if($(e.relatedTarget).attr('id')=='xinzengfenlei'){
        }
    }) 
 }
-
-
     })
 
 //新增或修改数据下：--------------------------------
-$('.btn-primary').on('click',function(){
+$('.addModal .btn-primary').on('click',function(){
     // var id=$('#myform input[name=id]').val();
-
  $.ajax({
      type:'post',
      url:addId? BigNew.category_edit:BigNew.category_add,
