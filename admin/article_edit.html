@@ -80,7 +80,7 @@
 <!-- 文章分类的模板 -->
 <script type="text/template" id="article_list">
 {{each data value index}}
-    <option value="{{value.id}}" selected >{{value.name}}</option>
+    <option value="{{value.id}}" {{if value.id==categoryId}} selected {{/if}}>{{value.name}}</option>
 {{/each }}
 </script>
 </body>
