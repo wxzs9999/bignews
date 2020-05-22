@@ -34,12 +34,21 @@
         </div>
         <div class="container-fluid common_con">
             <form class="form-horizontal article_form" id="form">
+                <!-- id -->
+                <div class="form-group hidden">
+                    <label for="inputTitle" class="col-sm-2 control-label">文章id：</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="id" class="form-control title">
+                    </div>
+                </div>
+                <!-- name -->
                 <div class="form-group">
                     <label for="inputTitle" class="col-sm-2 control-label">文章标题：</label>
                     <div class="col-sm-10">
                         <input type="text" name="title" class="form-control title" id="inputTitle" value="文章标题文字">
                     </div>
                 </div>
+                <!-- img -->
                 <div class="form-group">
                     <label for="inputCover" class="col-sm-2 control-label">文章封面：</label>
                     <div class="col-sm-10">
@@ -47,6 +56,7 @@
                         <input name="cover" type="file" id="inputCover">
                     </div>
                 </div>
+                <!-- category -->
                 <div class="form-group">
                     <label for="inputCategory" class="col-sm-2 control-label">文章类别：</label>
                     <div class="col-sm-4">
@@ -59,6 +69,7 @@
                         </select>
                     </div>
                 </div>
+                <!-- 时间 -->
                 <div class="form-group">
                     <label class="col-sm-2 control-label">发布时间：</label>
                     <div class="col-sm-4">

@@ -10,7 +10,8 @@ $(function () {
             }
         }
     })
-
+    //获取主内容数据：----------------------
+    getDate(1,pagination)
     //封装的获取页面数据：--------------------------------------
     var current=1;
     function getDate(mypage,callback) {
@@ -25,7 +26,6 @@ $(function () {
                 perpage: 10,
             },
             success: function (res) {
-                console.log(res);
                 if (res.code == 200) {
                     var htmlStr = template('Main', res);
                     $('tbody').html(htmlStr);
@@ -46,8 +46,7 @@ $(function () {
         })
 
      }
-    //获取主内容数据：----------------------
-    getDate(1,pagination)
+    
 
     //筛选设置事件：---------------------------------------------
     $('#btnSearch').on('click', function (e) {
