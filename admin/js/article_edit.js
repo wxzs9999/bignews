@@ -61,56 +61,6 @@ $(function () {
         $('.article_cover').attr('src', url);
     })
 
-    //设置修改事件：
-
-    // $('.btn-edit').on('click', function (e) {
-    //     e.preventDefault();
-    //     //1.准备数据：
-    //     var form = document.querySelector('#form');
-    //     var data = new FormData(form)  //，传入必须是一个DOM对象，获取到form里面所有带name属性的值,转成二进制
-    //     data.append('content', editor.txt.html())
-    //     data.append('state', '已发布');
-
-    //     $.ajax({
-    //         type: 'post',
-    //         url: BigNew.article_edit,
-    //         data: data,
-    //         contentType: false, //不使用原来的编码方式
-    //         processData: false,  //不使用字符串的拼接
-    //         success: function (res) {
-    //             if (res.code == 200) {
-    //                 console.log(res);
-    //                 window.history.back();//回退到上一页
-    //             }
-    //         }
-    //     })
-    // })
-
-    //设置草稿事件：
-    // $('.btn-draft').on('click', function (e) {
-    //     e.preventDefault();
-    //     //1.准备数据：
-    //     var form = document.querySelector('#form');
-    //     var data = new FormData(form)  //，传入必须是一个DOM对象，获取到form里面所有带name属性的值,转成二进制
-    //     data.append('content', editor.txt.html())
-    //     data.append('state', '草稿')
-
-    //     $.ajax({
-    //         type: 'post',
-    //         url: BigNew.article_edit,
-    //         data: data,
-    //         contentType: false, //不使用原来的编码方式
-    //         processData: false,  //不使用字符串的拼接
-    //         success: function (res) {
-    //             if (res.code == 200) {
-    //                 console.log(res);
-    //                 window.history.back();//回退到上一页
-    //             }
-    //         }
-    //     })
-
-    // })
-
 //优化修改，存为草稿事件：
 $('#form').on('click', '.btn',function (e) {
     e.preventDefault();
@@ -133,7 +83,8 @@ $('#form').on('click', '.btn',function (e) {
         processData: false,  //不使用字符串的拼接
         success: function (res) {
             if (res.code == 200) {
-                window.history.back();//回退到上一页
+                // window.history.back();//回退到上一页
+                window.location.href='./article_list.html'
             }
         }
     })

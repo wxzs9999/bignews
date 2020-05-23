@@ -105,7 +105,6 @@ $.ajax({
   type:'get',
   url:BigNew.articleNumber,
   success:function(res){
-      console.log(res);
       loadEchars2(res) 
   }
 })
@@ -119,9 +118,7 @@ for(var i=0;i<obj.date.length;i++){
     date1.push(obj.date[i].name);
     date2.push({value:obj.date[i].articles,name:obj.date[i].name});
 }
-console.log(date1);
-console.log(date2);
-
+ 
 option1 = {
     title: {
         left: 'center',

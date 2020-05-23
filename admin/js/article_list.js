@@ -99,6 +99,19 @@ $(function () {
       }) 
    })
 
+//给发表文章按钮设置事件：
+$('#release_btn').on('click',function(){
+    parent.$('.menu .level02 li:eq(1)').click()//触发li标签的点击事件
+})
+
+
+
+
+
+
+
+
+
     })
 
 
